@@ -1,0 +1,15 @@
+[
+    {
+        "nickname":"dino",
+        "password":"123",
+        "token":"asdfghjkl"
+
+    },
+
+    {
+        "nickname":"pino",
+        "password":"456",
+        "token":"zxcvbnm"
+
+    }
+]

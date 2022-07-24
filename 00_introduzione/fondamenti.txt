@@ -1,0 +1,61 @@
+Fondamenti di programmazione
+
+Linguaggi di programmazione, tipi e esecuzioni
+
+•	Linguaggio Macchina (istruzioni 0, 1, organizzate per parole tipo byte, 16bit, ..)
+•	Assembly (nome quello dl processore) – istruzioni simboliche ma 1:1 con il linguaggio macchina – anzichè scrivere 1100000 = 96 = 0x60 = LDA
+•	C (Dennis Ritchie -  Brian Kernighan) è un linguaggio di livello più alto che necessità di essere tradotto in LM – quindi compilato (da un programma inizialmente scritto in assembly): vuol dire che dato un testo scritto in C il compilatore lo traduce una tantumin un equivalente programma LM – matching 1:N
+•	Come C e simili (compilati): Pascal, Fortran, ..
+•	Linguaggi interpretati: Basic, .. PHP, Python, Javascript – traduzione avviene tutte le volte che il testo del programma viene eseguito e in tempo reale, interpretato “istruzione per istruzione”. Non necessita del tempo di compilazione ma è più lento nell’esecuzione di un compilato. Ma ha un vantaggio: può essere eseguito senza riscrittura su più architetture/processori/LM diversi.
+•	Compilati Just in Time (JIT) (php, js)
+•	Compilati JIT (esecuzione prima volta e cache) + Cache (esecuzione volte successive dalla cache) in alcuni casi di .Net
+•	Compilati Bytecode (macchina astratta) – questo risolve il problema di 1 linguaggio -> da tradurre/compilare in molti target per viaggiare a velocità LM:
+linguaggio compilato in un LM ASTRATTO (bytecode) – questo viene poi eseguito su un Processore Virtuale di Linguaggio detta anche Macchina Virtuale di Linguaggio che lo traduce (interpreta) in LM fisico del processore sotto
+è il caso di JAVA e .Net
+•	(ritorno al passato – compilati puri super ottimizzati – vedi RUSTlang)
+
+Procedurali, Object Based, Object Oriented, non tipati, fortemente tipati..
+
+Linguaggi tipati, fortemente tipati, non tipati (inteso come tipi dati)
+
+•	Linguaggi procedurali C, Pascal, Basic – sequenziali i cui il codice si divide e organizza per moduli/funzioni/procedure
+•	Linguaggi Object based e Object oriented – C++, Java, .Net, Ada, ..
+
+--
+Fondamenti di Versioning, ovvero GIT
+
+libro ufficiale e gratuito:
+https://git-scm.com/book/en/v2
+
+git - software scritto originariamente da Linus Torvalds
+
+. gestire fotografie/versioni del poprio codice con commenti alle modifiche, chi ha fatto cosa, ..
+. condividere il codice con altri colleghi
+. di avere un backup del proprio codice su un server centrale (che coordina ttte le linee di codice)
+. avere più linee di codice parallele
+. gestire in modo automatico (quasi sempre) i cosiddetti merge
+
+punto di partenza una directory sotto la quale c'è tutto il progetto..
+dentro questa directory, olter i file e le sottodirectory etc. del progetto GIT crea e mantiene una directory nascosta: .git
+dentro .git, git scrive tutto quello che serve per manteere lo storico delle versioni, configurazione del repository remoto, etc. etc. del mio codice
+
+1) git mantiene lo storico delle versioni sia sulla macchina dello sviluppatore, sia sul server
+-> vantaggio, si può lavorare anche offline
+2) fare una fotografia (snapshot) del nostro codice avviene in due passaggi: metto i file che mi interessa fotografare in STAGE e poi faccio COMMIT con una descrizione di cosa ho fatto.
+questa fotografia è LOCALE
+3) quando una fotografia si può o eve rilasciare sul server affinchè tutti la vedano si fa una cosiddetta PUSH
+ATTENZIONE:
+per fare PUSH è necessario fare prima PULL che è il suo esatto contrario
+PUSH: legge dal server le ultime fotografie e l sincronizza, unisce con la fotografia che abbiamo in locale
+se la versione sul server appunto è > di quella in locale GIT ci chiederà prima di fare un pull (e in automatico dei merge dei file in collisione), dopo di chè sarà possibile fare una push.
+
+MERGE?
+spesso git riesce a unire le modifiche su uno stesso file in automatico, permettendo così di committare e pushaer senza problemi
+sE NON RIESCE - errore -> e i programmatori devono ridimere la questione (tipicamente uniscono a mano pushano la modifica della precedentemente pushata, rollback della versione che non si riesce a pushare, pull della nuova e tutto torna a posto).
+
+Buone pratiche:
+1) fare PULL spesso.. intanto ho importato localmente la foto (quindi backup) - sono sincrono col server
+2) fare PUSH tutte le volte necessarie e significative (di cui è utile conservare una foto)
+deve essere fatto almeno una volta al giorno..
+
+ripartiamo con i fondamenti di logica usando Visual Studio Code e Javascript in browser

@@ -1,0 +1,211 @@
+<html>
+	<head>
+		<title>lezione 03 datatypes, functions e objects</title>
+		<link rel="stylesheet" href="./../css/style.css">
+	</head>
+	<body>
+		<h1 id="titolo_principale">lezione 03 datatypes, functions e objects</h1>
+		<p>Se usi chrome apri la finestra developer tools (..., altri strumenti, strumenti per sviluppatori).</p>
+		<p>Per vedere i console.log inseriti in javascript di esempio (mostrare il tab console).</p>
+
+		<script>
+
+			"use strict";
+
+			// datatypes
+			// https://www.w3schools.com/js/js_datatypes.asp
+
+			function num_asc_comp(primo_el, secondo_el){
+				return primo_el - secondo_el;
+			}
+			function num_desc_comp(primo_el, secondo_el){
+				return secondo_el - primo_el;
+			}
+
+			function general_asc_comp(primo_el, secondo_el){
+				if(typeof primo_el == "number" && typeof secondo_el == "number")
+					return primo_el - secondo_el;
+				
+				if(primo_el.toString() < secondo_el.toString()) 
+					return -1;
+				else if (primo_el.toString() > secondo_el.toString())
+					return 1;
+				
+			  return 0;
+			}
+
+			function numstr_asc_comp(primo_el, secondo_el){
+				if(typeof primo_el == "number" && typeof secondo_el == "number")
+					return primo_el - secondo_el;
+
+				if(typeof primo_el == "string" && typeof secondo_el == "string")
+					return (primo_el < secondo_el)?-1:1;
+				
+				if(typeof primo_el == "string") 
+					return 1;
+				else
+					return -1;
+			}
+
+			window.addEventListener(
+				'DOMContentLoaded', 
+				function(event){
+
+					// se invece di una variabile singola voglio un elenco di variabili ordinate in una lista
+					let cosa_da_comprare = "pane";
+
+					// la precedentre è una cosa sola, ma se voglio un elenco ordinato posso usare gli array
+					// un array di N elementi si conta da 0 .. N-1
+					const cose_da_comprare = ["pane", "latte", "uova"];
+
+					document.getElementById("output_codice").innerHTML += cose_da_comprare[0] + '<br>';
+
+					let animali = [];
+					animali.push("cane");		// push aggiunge alla fine
+					animali.push("gatto");
+					animali.unshift("canarino"); // unshift aggiunge in testa
+					animali.unshift("zebra");
+					animali.splice(2, 0, "cinghiale", "elefante"); // splice può essere usata per inserire e cancellare elementi in un certo indice
+					animali[4] = "coniglio"; // come sostituire un valore dell'array
+					
+					document.getElementById("output_codice").innerHTML += animali.length + '<br>';
+					document.getElementById("output_codice").innerHTML += animali + '<br>';
+					document.getElementById("output_codice").innerHTML += animali.reverse() + '<br>';
+					document.getElementById("output_codice").innerHTML += animali.sort() + '<br>';
+
+					let ultimo_el = animali.pop(); // toglie ultimo elemento e lo torna
+					document.getElementById("output_codice").innerHTML += animali + '<br>';
+
+					let primo_el = animali.shift(); // toglie primo elemento e lo torna
+					document.getElementById("output_codice").innerHTML += animali + '<br>';
+
+					let terzo_el = animali.splice(2, 1); // toglie indice 2 (quindi terzo elemento) elemento e lo torna
+					document.getElementById("output_codice").innerHTML += animali + '<br>';
+
+					// cosa succede se chiedo o cerco di leggere un indice che non c'è
+					document.getElementById("output_codice").innerHTML += animali[10] + '<br>';
+					// ottengo undefined
+
+					// cosa succede se chiedo o cerco di scrivere su un indice che non c'è
+					animali[10] = "granchio";
+					animali[11] = "balena";
+					document.getElementById("output_codice").innerHTML += animali + '<br>';
+					// ottengo un nuovo array lungo abbastanza per contener anche indice nuovo e tutti li intermedi vuoti
+
+					document.getElementById("output_codice").innerHTML += animali.sort(num_asc_comp) + '<br>';
+
+					document.getElementById("output_codice").innerHTML += animali.length + '<br>';
+
+					let numeri = [1,32, 4, 18, 123];
+					document.getElementById("output_codice").innerHTML += numeri + '<br>';
+					document.getElementById("output_codice").innerHTML += numeri.sort() + '<br>';
+					document.getElementById("output_codice").innerHTML += numeri.sort(num_asc_comp) + '<br>';
+					document.getElementById("output_codice").innerHTML += numeri.sort(num_desc_comp) + '<br>';
+
+					// unire un array in stringa separata
+					document.getElementById("output_codice").innerHTML += numeri.join('(ciao)') + '<br>';
+
+					// ricavare array da una stringa separata
+					let giochi = ("monopoli-risiko-cluedo").split("-");
+					document.getElementById("output_codice").innerHTML += giochi + '<br>';
+
+					let array_misto = [3,2,1,"zebra",4,0,"topolino","1AB",20,"20pluto"];
+					document.getElementById("output_codice").innerHTML += array_misto + '<br>';
+					document.getElementById("output_codice").innerHTML += array_misto.sort(general_asc_comp) + '<br>';
+					document.getElementById("output_codice").innerHTML += array_misto.sort(numstr_asc_comp) + '<br>';
+
+					// come faccioa  sapere il tipo di un valore o variabile o costante
+					// uso typeof
+
+					document.getElementById("output_codice").innerHTML += (typeof array_misto) + '<br>';
+					document.getElementById("output_codice").innerHTML += (typeof num_asc_comp) + '<br>';
+					document.getElementById("output_codice").innerHTML += (typeof cosa_da_comprare) + '<br>';
+
+					array_misto.forEach(element => {
+						document.getElementById("output_codice").innerHTML += "(foreach) "+element+ '<br>';
+					});
+
+					array_misto.forEach(function(element){
+						document.getElementById("output_codice").innerHTML += "(foreach2) "+element+ '<br>';
+					});
+
+					// come generare un indice casuale di array
+					let indice_casuale = Math.floor(Math.random() * array_misto.length);
+					document.getElementById("output_codice").innerHTML += "(casuale) "+array_misto[indice_casuale]+ '<br>';
+
+					// usiamo la famosa libreria eserna per gestire le date moment.js
+					moment.locale('it');
+					document.getElementById("output_codice").innerHTML += "(moment-10gg) "+ moment().subtract(10, 'days').calendar() + '<br>';
+
+
+					// come fare a ciclare tutte le proprietà di un oggetto?
+					let persona = {
+						"nome" : "Giovanni",
+						"cognome" : "Verdi",
+						"indirizzo" : "Via Roma 1",
+						"cap" : "10100",
+						"numero_scarpe" : 41,
+						"giro_vita" : 75,
+						"altezza" :175,
+						"peso": 90,
+						"altri_dati" : {
+							"telefono" : "333123456789",
+							"lingua" : "it"
+						}
+					};
+
+					document.getElementById("output_codice").innerHTML += JSON.stringify(persona) + "<br>";
+					for (let chiave in persona) {
+						document.getElementById("output_codice").innerHTML += chiave + ":" + (typeof persona[chiave]) + ":" + persona[chiave]+ "<br>";
+					}
+
+					// referenzio un ramo dell'oggetto e ne stampo il valore in 3 modi diversi
+					// cammino letterale in codice . separato
+					document.getElementById("output_codice").innerHTML += persona.altri_dati.telefono + "<br>";
+					// cammino usando una rappresentaizone stringa delle proprietà
+					document.getElementById("output_codice").innerHTML += persona["altri_dati"]["telefono"] + "<br>";
+					// come preceente ma i nomi dei rami sono dati da delle variabili
+					let lev1="altri_dati", lev2="telefono";
+					document.getElementById("output_codice").innerHTML += persona[lev1][lev2] + "<br>";
+
+					// gli oggetti in js sono dinamici posso aggiungere qualsiasi cosao cancellare a runtime
+					persona.nazione = "Italia";
+					persona.altri_dati.giochi = ["risiko", "cluedo"];
+					delete persona.giro_vita;
+					document.getElementById("output_codice").innerHTML += JSON.stringify(persona) + "<br>";
+
+					let generic_calcolo_stazza = function(){
+						let stazza = this.peso / this.altezza;
+						return stazza;
+					};
+					
+					persona.calcolo_stazza = generic_calcolo_stazza;
+
+					document.getElementById("output_codice").innerHTML += persona.calcolo_stazza() + "<br>";
+					persona.altezza = 200;
+					document.getElementById("output_codice").innerHTML += persona.calcolo_stazza() + "<br>";
+
+					// questa linea da errore perchè il this non essendo persona ma probabilmente il document
+					// non avendo le chiavi peso e altezza va in bomba
+					// come facciamo a gestire una bomba senza che il programma vada in blocco?
+					try{
+						document.getElementById("output_codice").innerHTML += generic_calcolo_stazza() + "<br>";
+						
+					} catch(eccezione){
+						document.getElementById("output_codice").innerHTML += eccezione.toString() + "<br>";
+					}
+
+				}
+			);
+
+
+		</script>
+
+		<h2 id="titolo_2">Output del programma</h2>
+		<div id="output_codice"></div>
+	
+	</body>
+
+	<script src="./../js/moment-with-locale.js"></script>
+
+</html>

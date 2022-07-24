@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>boilerplate</title>
+        <link rel="stylesheet" href ="./../css/style.css"/>
+    </head>
+    <body>
+        <h1 id="titolo_princiale"></h1>
+        <p>Se usi chrome apri la finestra developer tools (...; altri strumenti, strumenti per sviluppatori). </p>
+        <p>Per vedere i console.log inseriti in javascript di esempio (mostrare il tab console)</p>
+        
+        <script>
+
+            "use strict";
+            /*TASK
+            1 TODO testo dove poter inserire una url
+            2 TODO bottone leggi che invoca funziona che interroga la url e ne prende il contenuto
+            3 TODO mostrare il contenuto in formato stringa in un div
+            4 TODO gestire gli errori
+            5 TODO gestire il 404 in modo da non far stampare nel <div> il messaggio di errore, ma interrompendo la catena .then .
+            */
+
+            function click_leggi (event) {
+				//alert ("click_leggi");
+				event.stopPropagation();
+
+				// prendo la url dall'input text input_url
+				let url = document.getElementById("input_url").value;
+                if(url != "") {
+                    
+                }
+

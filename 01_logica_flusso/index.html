@@ -1,0 +1,155 @@
+<html>
+	<head>
+		<title>lezione 01 flusso e logica</title>
+	</head>
+	<body>
+		<h1 id="titolo_principale">Lezione 01 flusso e logica JS</h1>
+		<p>Se usi chrome apri la finestra developer tools (..., altri strumenti, strumenti per sviluppatori).</p>
+		<p>Per vedere cosa fa il javascript di esempio mostrare il tab console.</p>
+
+		<script>
+
+			"use strict";
+
+			window.addEventListener(
+				'DOMContentLoaded', 
+				function(event){
+					console.log('DOM fully loaded and parsed');
+
+					console.log("Lezione 01 flusso e logica JS");
+
+					let a=5;
+					console.log("proviamo la if then else - ISTRUZIONE BIFORCAZIONE CONDIZIONALE");
+					if (a==4){
+						console.log("1. sono entrato nel ramo if");
+					} else {
+						console.log("1. sono entrato nel ramo else");
+					}
+
+					if (a>4){
+						console.log("2. sono entrato nel ramo if");
+					} else {
+						console.log("2. sono entrato nel ramo else");
+					}
+
+					if (a!==4){
+						console.log("3. sono entrato nel ramo if");
+					} else {
+						console.log("3. sono entrato nel ramo else");
+					}
+
+					if(a==1) {
+						console.log("ramo 4.1");
+					} else if(a==2){
+						console.log("ramo 4.2");
+					} else if (a==3){
+						console.log("ramo 4.3");
+					} else {
+						console.log("ramo 4.finale");
+					}
+
+					document.getElementById('titolo_principale').innerHTML = "ho cambiato il titolo";
+					document.getElementById('titolo_2').innerHTML = "la mamma va al mercato";
+
+					// variabili case sensitive e modo giusto di usarle
+					// usate SEMPRE let e NON var
+					let pippo = 5;
+					console.log("pippo=", pippo);
+					pippo = 6;
+					console.log("pippo=", pippo);
+					pippo = 7;
+					console.log("pippo=", pippo);
+
+					let pluto = 31;
+					{
+						let pluto = 3;
+						console.log("pluto=", pluto);
+					}
+					console.log("pluto=", pluto);
+					
+					// loop
+
+					for(let c=0; c<100; c++){
+						console.log("c=", c);
+					}
+
+					// equivalente while
+					let c=0;
+					while(c<100){
+						console.log("c=", c);
+						c++;
+					}
+
+					//console.log("fuori c=", c);
+
+					for(let c=10; c>=0; c--){
+						console.log("(rev) c=", c);
+					}
+					//console.log("fuori (rev) c=", c);
+
+					for(let c=0; c<100; c=c+6.7){
+						console.log("(incDIVERSO) c=", c);
+					}
+					//console.log("fuori (incDIVERSO) c=", c);
+
+					// ciclo infinito terminato internamente
+					// while PRIMA TEST CONDIZIONE poi esecuzione blocco
+					while(true){
+						let casuale = Math.floor(Math.random()*100);
+						console.log("casuale=", casuale);
+						if(casuale == 39) {
+							break;
+						}
+					}
+
+					let dato=0;
+					while(dato<10){
+						dato = prompt("inserisci un numero");
+					}
+
+					// per fare PRIMA ESECUZIONE BLOCCO e poi TEST CONDIZIONE CICLO
+					
+					let f=2;
+					do {
+						console.log("f=",f);
+						f = f+1;
+					} while (f<10);
+
+					// break funziona anche nell for
+					// break interrompe il ciclo ed esce dal suo scopo
+
+					for(let c=0; c<100; c=c+2){
+						console.log("(incPARI) c=", c);
+						if(c==32) break;
+						// altre linee qui e altri cicli non verrebbero eseguiti dopo il break..
+					}
+
+					// continue
+					// la continue serve a interrompere il blocco di ciclo ed eseguire il ciclo successivo
+
+					for(let c=0; c<100; c=c+2){
+						console.log("(incPARI2) c=", c);
+						if(c != 10) continue;
+						console.log("trovato 10");
+					}
+
+					// variazione per alcuni casi della if
+					// switch
+
+					let numero = 5;
+					switch(numero){
+						case 2: console.log("ho trovato 2");
+							break;
+						case 5: console.log("ho trovato 5");
+							break;
+						default: console.log("questo caso non è contemplato");
+					}
+
+				}
+			);
+
+		</script>
+
+		<h2 id="titolo_2">altro titolo</h2>
+	</body>
+</html>
